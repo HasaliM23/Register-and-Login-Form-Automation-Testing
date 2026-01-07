@@ -73,7 +73,7 @@ public class PasswordMissMatchTest {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signup);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", signup);
 
-        // ASSERT email validation
+        // ASSERT Password MissMatch validation
         WebElement error = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//input[@id='confirm_password']")
