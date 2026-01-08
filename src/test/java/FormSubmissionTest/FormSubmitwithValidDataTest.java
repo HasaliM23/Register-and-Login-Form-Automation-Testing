@@ -1,10 +1,12 @@
 package FormSubmissionTest;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -36,10 +38,56 @@ public class FormSubmitwithValidDataTest {
         email.sendKeys("KolinWagen@gmail.com");
 
         WebElement phone = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='contact']")));
-        phone.sendKeys("90-894-789-23");
+        phone.sendKeys("09786543124");
 
         WebElement date = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='date']")));
-        date.sendKeys("20/01/2026");
+        date.sendKeys("01/20/2026");
+
+        // Upload file (absolute path)
+
+        String data ="C:\\Users\\INTEL\\Downloads\\User.png";
+
+        WebElement UploadFile = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='file']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", UploadFile);
+
+        UploadFile.sendKeys(data);
+
+
+
+        WebElement color = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='Red']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", color);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",color);
+
+        WebElement food = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='Pizza']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", food);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", food);
+
+        WebElement country = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//select[@id='country']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", country);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", country);
+
+        Select select = new Select(country);
+        select.selectByVisibleText("Denmark");
+
+
+        WebElement submit = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[.='Submit ']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submit);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submit);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
